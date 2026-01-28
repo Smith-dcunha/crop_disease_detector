@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "789243471664",
+    "project_id": "cropcare-60827",
+    "storage_bucket": "cropcare-60827.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789243471664:android:cff8e05764bb8ab4064af5",
+        "android_client_info": {
+          "package_name": "com.example.crop_disease_detector"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc1YFUgyd0jpIJSrWBVQDG_lM4pjUW6cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,528 @@
+{
+  "diseases": [
+    {
+      "id": "tomato_early_blight",
+      "name": "Tomato Early Blight",
+      "scientific_name": "Alternaria solani",
+      "category": "Fungal",
+      "description": "Early blight is a common fungal disease that affects tomato plants, causing dark spots on leaves and reducing yield. It typically appears during warm, humid conditions.",
+      "symptoms": [
+        "Dark brown spots with concentric rings on lower leaves",
+        "Yellowing of leaves around spots",
+        "Leaf drop starting from bottom of plant",
+        "Stem lesions with dark brown color",
+        "Reduced fruit quality and size"
+      ],
+      "causes": [
+        "Fungal pathogen Alternaria solani",
+        "Warm temperatures (24-29°C)",
+        "High humidity and leaf wetness",
+        "Poor air circulation",
+        "Infected plant debris in soil"
+      ],
+      "treatments": [
+        "Remove and destroy infected leaves immediately",
+        "Apply fungicide containing chlorothalonil or copper",
+        "Use neem oil as organic alternative (spray weekly)",
+        "Ensure proper spacing between plants for air circulation",
+        "Water at base of plant, avoid wetting leaves",
+        "Apply mulch to prevent soil splash on leaves"
+      ],
+      "prevention": [
+        "Use disease-resistant tomato varieties",
+        "Practice crop rotation (3-4 year cycle)",
+        "Remove plant debris after harvest",
+        "Stake or cage plants to improve air flow",
+        "Apply preventive fungicide in humid conditions",
+        "Maintain proper plant nutrition with balanced fertilizer"
+      ],
+      "severity": "Medium",
+      "affected_crops": ["Tomato", "Potato", "Eggplant", "Pepper"],
+      "image_url": "",
+      "is_common": true
+    },
+    {
+      "id": "tomato_late_blight",
+      "name": "Tomato Late Blight",
+      "scientific_name": "Phytophthora infestans",
+      "category": "Fungal",
+      "description": "Late blight is a devastating disease that can destroy entire tomato crops within days. It's the same pathogen that caused the Irish Potato Famine.",
+      "symptoms": [
+        "Large brown or black patches on leaves",
+        "White fuzzy growth on leaf undersides",
+        "Brown lesions on stems",
+        "Hard brown spots on green fruits",
+        "Rapid plant collapse in severe cases"
+      ],
+      "causes": [
+        "Oomycete pathogen Phytophthora infestans",
+        "Cool temperatures (15-20°C)",
+        "High humidity and prolonged leaf wetness",
+        "Wind-dispersed spores from infected plants",
+        "Infected seed potatoes or transplants"
+      ],
+      "treatments": [
+        "Remove and destroy infected plants immediately",
+        "Apply copper-based fungicide at first signs",
+        "Use systemic fungicides like metalaxyl",
+        "Increase air circulation around plants",
+        "Stop overhead watering completely",
+        "Harvest any healthy fruit immediately"
+      ],
+      "prevention": [
+        "Plant certified disease-free transplants",
+        "Use resistant varieties when available",
+        "Space plants adequately (60-90 cm apart)",
+        "Apply preventive fungicide before symptoms appear",
+        "Monitor weather for favorable disease conditions",
+        "Remove volunteer tomato/potato plants"
+      ],
+      "severity": "High",
+      "affected_crops": ["Tomato", "Potato"],
+      "image_url": "",
+      "is_common": true
+    },
+    {
+      "id": "tomato_leaf_mold",
+      "name": "Tomato Leaf Mold",
+      "scientific_name": "Passalora fulva",
+      "category": "Fungal",
+      "description": "Leaf mold is a fungal disease that primarily affects greenhouse tomatoes. It causes yellowing and browning of leaves, reducing photosynthesis.",
+      "symptoms": [
+        "Pale green or yellow spots on upper leaf surface",
+        "Olive-green to brown fuzzy growth on leaf undersides",
+        "Leaf curling and wilting",
+        "Premature leaf drop",
+        "Rarely affects fruit directly"
+      ],
+      "causes": [
+        "Fungal pathogen Passalora fulva",
+        "High humidity (above 85%)",
+        "Poor ventilation in greenhouses",
+        "Temperatures between 22-24°C",
+        "Extended leaf wetness periods"
+      ],
+      "treatments": [
+        "Improve greenhouse ventilation immediately",
+        "Remove affected leaves and destroy them",
+        "Apply fungicide containing chlorothalonil",
+        "Reduce humidity with proper spacing",
+        "Use fans to improve air circulation",
+        "Lower humidity with heating and venting"
+      ],
+      "prevention": [
+        "Choose resistant tomato varieties",
+        "Maintain greenhouse humidity below 85%",
+        "Ensure adequate plant spacing",
+        "Use drip irrigation instead of overhead",
+        "Sanitize greenhouse between crops",
+        "Monitor humidity levels regularly"
+      ],
+      "severity": "Medium",
+      "affected_crops": ["Tomato"],
+      "image_url": "",
+      "is_common": true
+    },
+    {
+      "id": "tomato_septoria_leaf_spot",
+      "name": "Tomato Septoria Leaf Spot",
+      "scientific_name": "Septoria lycopersici",
+      "category": "Fungal",
+      "description": "Septoria leaf spot is one of the most destructive tomato diseases. It causes rapid defoliation and can significantly reduce yields.",
+      "symptoms": [
+        "Small circular spots with dark borders",
+        "Gray or tan centers with tiny black dots",
+        "Spots primarily on older leaves",
+        "Rapid yellowing and leaf drop",
+        "Defoliation starting from bottom up"
+      ],
+      "causes": [
+        "Fungus Septoria lycopersici",
+        "Warm wet weather (20-25°C)",
+        "Rain splash spreading spores",
+        "Infected plant debris in soil",
+        "High humidity conditions"
+      ],
+      "treatments": [
+        "Remove infected lower leaves immediately",
+        "Apply copper-based fungicide weekly",
+        "Use chlorothalonil fungicide for severe cases",
+        "Mulch around plants to prevent soil splash",
+        "Water at base of plants only",
+        "Improve air circulation between plants"
+      ],
+      "prevention": [
+        "Use disease-free transplants",
+        "Practice 3-year crop rotation",
+        "Remove all plant debris after harvest",
+        "Apply organic mulch around plants",
+        "Use drip irrigation system",
+        "Space plants 60-90 cm apart"
+      ],
+      "severity": "High",
+      "affected_crops": ["Tomato"],
+      "image_url": "",
+      "is_common": true
+    },
+    {
+      "id": "tomato_bacterial_spot",
+      "name": "Tomato Bacterial Spot",
+      "scientific_name": "Xanthomonas spp.",
+      "category": "Bacterial",
+      "description": "Bacterial spot is a serious disease affecting tomatoes and peppers. It causes leaf spots and fruit lesions, reducing marketability.",
+      "symptoms": [
+        "Small dark brown to black spots on leaves",
+        "Yellow halos around spots",
+        "Raised brown spots on fruits",
+        "Defoliation in severe cases",
+        "Stunted plant growth"
+      ],
+      "causes": [
+        "Bacteria Xanthomonas species",
+        "Warm humid conditions (25-30°C)",
+        "Rain splash and overhead irrigation",
+        "Contaminated seeds or transplants",
+        "Wounds from insects or pruning"
+      ],
+      "treatments": [
+        "Apply copper-based bactericide weekly",
+        "Use streptomycin if available and legal",
+        "Remove severely infected plants",
+        "Improve air circulation",
+        "Avoid working with wet plants",
+        "Disinfect pruning tools regularly"
+      ],
+      "prevention": [
+        "Use certified disease-free seeds",
+        "Plant resistant varieties",
+        "Avoid overhead watering",
+        "Practice 2-3 year crop rotation",
+        "Disinfect tools between plants",
+        "Remove and destroy infected debris"
+      ],
+      "severity": "High",
+      "affected_crops": ["Tomato", "Pepper"],
+      "image_url": "",
+      "is_common": true
+    },
+    {
+      "id": "potato_early_blight",
+      "name": "Potato Early Blight",
+      "scientific_name": "Alternaria solani",
+      "category": "Fungal",
+      "description": "Early blight affects potato plants causing leaf spots and tuber damage. It's most severe in warm, humid conditions.",
+      "symptoms": [
+        "Brown spots with target-like rings on leaves",
+        "Yellowing around leaf spots",
+        "Stem cankers near soil line",
+        "Dark lesions on tubers",
+        "Premature plant death"
+      ],
+      "causes": [
+        "Fungus Alternaria solani",
+        "Warm temperatures (24-29°C)",
+        "Extended leaf wetness",
+        "Plant stress from drought or poor nutrition",
+        "Infected seed potatoes"
+      ],
+      "treatments": [
+        "Apply chlorothalonil fungicide every 7-10 days",
+        "Remove and destroy infected leaves",
+        "Ensure adequate soil fertility",
+        "Water deeply but infrequently",
+        "Harvest tubers when fully mature",
+        "Cure tubers properly before storage"
+      ],
+      "prevention": [
+        "Plant certified disease-free seed potatoes",
+        "Use resistant varieties",
+        "Practice 3-4 year crop rotation",
+        "Hill soil around plants to protect tubers",
+        "Maintain balanced fertilization",
+        "Remove volunteer potato plants"
+      ],
+      "severity": "Medium",
+      "affected_crops": ["Potato", "Tomato"],
+      "image_url": "",
+      "is_common": true
+    },
+    {
+      "id": "potato_late_blight",
+      "name": "Potato Late Blight",
+      "scientific_name": "Phytophthora infestans",
+      "category": "Fungal",
+      "description": "The most destructive potato disease, capable of destroying entire fields. Requires immediate action when detected.",
+      "symptoms": [
+        "Water-soaked spots on leaves",
+        "White fuzzy growth on leaf undersides",
+        "Brown to black lesions on stems",
+        "Purple-brown rot on tubers",
+        "Foul odor from rotting tubers"
+      ],
+      "causes": [
+        "Oomycete Phytophthora infestans",
+        "Cool moist weather (15-20°C)",
+        "Extended periods of leaf wetness",
+        "Infected seed potatoes",
+        "Wind-dispersed spores"
+      ],
+      "treatments": [
+        "Destroy infected plants immediately",
+        "Apply systemic fungicides like metalaxyl",
+        "Increase fungicide frequency during outbreaks",
+        "Cut and remove foliage before harvest",
+        "Allow tubers to cure 2-3 weeks before harvest",
+        "Discard any infected tubers"
+      ],
+      "prevention": [
+        "Plant only certified seed potatoes",
+        "Choose resistant varieties",
+        "Monitor weather for blight conditions",
+        "Apply preventive fungicides early",
+        "Hill soil to protect tubers",
+        "Destroy cull piles and volunteer plants"
+      ],
+      "severity": "High",
+      "affected_crops": ["Potato", "Tomato"],
+      "image_url": "",
+      "is_common": true
+    },
+    {
+      "id": "corn_common_rust",
+      "name": "Corn Common Rust",
+      "scientific_name": "Puccinia sorghi",
+      "category": "Fungal",
+      "description": "Common rust is a widespread corn disease that causes reddish-brown pustules on leaves, reducing photosynthesis and yield.",
+      "symptoms": [
+        "Small reddish-brown pustules on leaves",
+        "Pustules on both sides of leaves",
+        "Elongated pustules along veins",
+        "Yellow halo around pustules",
+        "Premature leaf death in severe cases"
+      ],
+      "causes": [
+        "Fungus Puccinia sorghi",
+        "Cool temperatures (16-22°C)",
+        "High humidity and dew",
+        "Wind-dispersed spores",
+        "Susceptible corn varieties"
+      ],
+      "treatments": [
+        "Apply fungicide if economically justified",
+        "Use triazole or strobilurin fungicides",
+        "Scout fields regularly for early detection",
+        "Apply fungicide at first sign of disease",
+        "No treatment needed for resistant varieties",
+        "Consider hybrid replacement if severe"
+      ],
+      "prevention": [
+        "Plant resistant corn hybrids",
+        "Choose adapted varieties for region",
+        "Avoid late planting dates",
+        "Practice crop rotation",
+        "Remove volunteer corn plants",
+        "Monitor weather conditions"
+      ],
+      "severity": "Low",
+      "affected_crops": ["Corn", "Sweet Corn"],
+      "image_url": "",
+      "is_common": true
+    },
+    {
+      "id": "corn_northern_leaf_blight",
+      "name": "Corn Northern Leaf Blight",
+      "scientific_name": "Exserohilum turcicum",
+      "category": "Fungal",
+      "description": "Northern leaf blight causes long, narrow lesions on corn leaves. It can significantly reduce yields in susceptible hybrids.",
+      "symptoms": [
+        "Long cigar-shaped lesions on leaves",
+        "Gray-green to tan colored lesions",
+        "Lesions parallel to leaf veins",
+        "Entire leaves may die in severe cases",
+        "Reduced ear fill and grain quality"
+      ],
+      "causes": [
+        "Fungus Exserohilum turcicum",
+        "Moderate temperatures (18-27°C)",
+        "High humidity and extended leaf wetness",
+        "Infected corn residue in field",
+        "Continuous corn cropping"
+      ],
+      "treatments": [
+        "Apply fungicide at early symptom stage",
+        "Use QoI or DMI fungicides",
+        "Apply second application if disease progresses",
+        "Scout upper canopy for disease",
+        "Time applications based on growth stage",
+        "Consider aerial application for large fields"
+      ],
+      "prevention": [
+        "Select resistant corn hybrids",
+        "Practice crop rotation (minimum 1 year)",
+        "Bury or shred corn residue after harvest",
+        "Plant at optimal dates for region",
+        "Maintain balanced soil fertility",
+        "Scout fields regularly during season"
+      ],
+      "severity": "Medium",
+      "affected_crops": ["Corn"],
+      "image_url": "",
+      "is_common": true
+    },
+    {
+      "id": "wheat_leaf_rust",
+      "name": "Wheat Leaf Rust",
+      "scientific_name": "Puccinia triticina",
+      "category": "Fungal",
+      "description": "Leaf rust is the most common rust disease of wheat worldwide. It can cause significant yield losses if left unmanaged.",
+      "symptoms": [
+        "Small orange-brown pustules on leaves",
+        "Pustules mostly on upper leaf surface",
+        "Circular to oval shaped pustules",
+        "Yellow halo around pustules",
+        "Premature leaf drying and death"
+      ],
+      "causes": [
+        "Fungus Puccinia triticina",
+        "Moderate temperatures (15-22°C)",
+        "High humidity and dew",
+        "Wind-dispersed spores from south",
+        "Susceptible wheat varieties"
+      ],
+      "treatments": [
+        "Apply triazole or strobilurin fungicide",
+        "Treat when 5-10% leaf area affected",
+        "Make applications before heading stage",
+        "Use tank mixes for better control",
+        "Monitor after application for effectiveness",
+        "Consider second application if needed"
+      ],
+      "prevention": [
+        "Plant resistant wheat varieties",
+        "Destroy volunteer wheat plants",
+        "Plant at recommended time for region",
+        "Scout fields from tillering onward",
+        "Use fungicide seed treatment",
+        "Monitor rust alerts in region"
+      ],
+      "severity": "Medium",
+      "affected_crops": ["Wheat"],
+      "image_url": "",
+      "is_common": true
+    },
+    {
+      "id": "grape_black_rot",
+      "name": "Grape Black Rot",
+      "scientific_name": "Guignardia bidwellii",
+      "category": "Fungal",
+      "description": "Black rot is one of the most serious diseases of grapes in humid regions. It can destroy entire grape clusters.",
+      "symptoms": [
+        "Small reddish-brown spots on leaves",
+        "Black pycnidia (dots) in center of spots",
+        "Brown circular lesions on fruit",
+        "Fruit shrivels into hard black mummies",
+        "Cane lesions with sunken centers"
+      ],
+      "causes": [
+        "Fungus Guignardia bidwellii",
+        "Warm humid weather (20-27°C)",
+        "Rain and splash dispersal of spores",
+        "Infected mummies overwintering on vines",
+        "Poor canopy management"
+      ],
+      "treatments": [
+        "Apply mancozeb or captan fungicide",
+        "Spray every 7-14 days during wet periods",
+        "Ensure thorough coverage of clusters",
+        "Remove and destroy infected clusters",
+        "Improve air circulation in canopy",
+        "Continue applications through veraison"
+      ],
+      "prevention": [
+        "Remove all mummified berries from vineyard",
+        "Prune for open canopy structure",
+        "Apply dormant lime sulfur spray",
+        "Start fungicide program at bud break",
+        "Remove wild grape vines nearby",
+        "Practice good vineyard sanitation"
+      ],
+      "severity": "High",
+      "affected_crops": ["Grape"],
+      "image_url": "",
+      "is_common": true
+    },
+    {
+      "id": "apple_scab",
+      "name": "Apple Scab",
+      "scientific_name": "Venturia inaequalis",
+      "category": "Fungal",
+      "description": "Apple scab is the most serious disease of apple trees. It affects leaves, fruit, and young shoots, reducing quality and yield.",
+      "symptoms": [
+        "Olive-green to brown spots on leaves",
+        "Velvety appearance of leaf spots",
+        "Raised corky spots on fruit",
+        "Cracked and deformed fruit",
+        "Premature leaf and fruit drop"
+      ],
+      "causes": [
+        "Fungus Venturia inaequalis",
+        "Cool moist conditions (12-24°C)",
+        "Extended periods of leaf wetness",
+        "Infected leaves on ground from previous year",
+        "Spring rain during green tip to petal fall"
+      ],
+      "treatments": [
+        "Apply captan or myclobutanil fungicide",
+        "Begin sprays at green tip stage",
+        "Apply every 7-10 days until petal fall",
+        "Extend interval to 10-14 days after petal fall",
+        "Ensure complete coverage of leaves and fruit",
+        "Use tank mixes for resistance management"
+      ],
+      "prevention": [
+        "Plant scab-resistant apple varieties",
+        "Rake and destroy fallen leaves in autumn",
+        "Prune trees for good air circulation",
+        "Apply urea to fallen leaves to speed decay",
+        "Avoid overhead irrigation",
+        "Maintain regular fungicide schedule in spring"
+      ],
+      "severity": "High",
+      "affected_crops": ["Apple", "Crabapple"],
+      "image_url": "",
+      "is_common": true
+    }
+  ],
+  "categories": [
+    {
+      "id": "fungal",
+      "name": "Fungal Diseases",
+      "icon": "🍄",
+      "description": "Diseases caused by fungal pathogens"
+    },
+    {
+      "id": "bacterial",
+      "name": "Bacterial Diseases",
+      "icon": "🦠",
+      "description": "Diseases caused by bacterial pathogens"
+    },
+    {
+      "id": "viral",
+      "name": "Viral Diseases",
+      "icon": "🧬",
+      "description": "Diseases caused by viral pathogens"
+    },
+    {
+      "id": "pest",
+      "name": "Pest Damage",
+      "icon": "🐛",
+      "description": "Damage caused by insect pests"
+    },
+    {
+      "id": "nutritional",
+      "name": "Nutritional Disorders",
+      "icon": "🌱",
+      "description": "Problems from nutrient deficiencies"
+    }
+  ]
+}

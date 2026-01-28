@@ -4,339 +4,227 @@ import '../constants/app_colors.dart';
 import '../constants/app_strings.dart';
 import '../constants/app_text_styles.dart';
 import '../constants/app_constants.dart';
-import '../models/detection_result.dart';
 import '../models/scan_history.dart';
-import '../services/database_service.dart';
 
-class ResultScreen extends StatefulWidget {
-  final File imageFile;
-  final DetectionResult result;
+class ResultScreen extends StatelessWidget {
+  final ScanHistory scanHistory;
+  final Map<String, dynamic> predictionResult;
 
   const ResultScreen({
     super.key,
-    required this.imageFile,
-    required this.result,
+    required this.scanHistory,
+    required this.predictionResult,
   });
 
   @override
-  State<ResultScreen> createState() => _ResultScreenState();
-}
-
-class _ResultScreenState extends State<ResultScreen> {
-  final DatabaseService _dbService = DatabaseService();
-  bool _isSaved = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _autoSaveScan();
-  }
-
-  Future<void> _autoSaveScan() async {
-    try {
-      final scan = ScanHistory(
-        diseaseName: widget.result.diseaseName,
-        confidence: widget.result.confidence,
-        severity: widget.result.severity,
-        isHealthy: widget.result.isHealthy,
-        imagePath: widget.imageFile.path,
-        detectedAt: widget.result.detectedAt,
-        additionalInfo: widget.result.additionalInfo,
-      );
-
-      await _dbService.insertScan(scan);
-      setState(() => _isSaved = true);
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(AppStrings.scanSaved),
-            backgroundColor: AppColors.success,
-            duration: const Duration(seconds: 2),
-          ),
-        );
-      }
-    } catch (e) {
-      print('Error saving scan: $e');
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final isHealthy = scanHistory.isHealthy;
+    final confidence = scanHistory.confidence;
+
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text(AppStrings.resultsTitle),
-        backgroundColor: AppColors.primary,
+        title: const Text('Analysis Results'),
+        backgroundColor: isHealthy ? AppColors.success : AppColors.error,
         foregroundColor: Colors.white,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.share_rounded),
-            onPressed: _shareResult,
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Image Card
-            _buildImageCard(),
+            // Status Header
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(AppConstants.paddingXLarge),
+              decoration: BoxDecoration(
+                gradient: isHealthy
+                    ? AppColors.successGradient
+                    : LinearGradient(
+                  colors: [AppColors.error, AppColors.error.withOpacity(0.8)],
+                ),
+              ),
+              child: Column(
+                children: [
+                  Icon(
+                    isHealthy ? Icons.check_circle : Icons.warning,
+                    size: 80,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(height: AppConstants.paddingMedium),
+                  Text(
+                    isHealthy ? 'Healthy Crop!' : 'Disease Detected',
+                    style: AppTextStyles.h3.copyWith(color: Colors.white),
+                  ),
+                  const SizedBox(height: AppConstants.paddingSmall),
+                  Text(
+                    scanHistory.diseaseName,
+                    style: AppTextStyles.h5.copyWith(color: Colors.white70),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
 
-            const SizedBox(height: AppConstants.paddingLarge),
+            Padding(
+              padding: const EdgeInsets.all(AppConstants.paddingLarge),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Image
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(AppConstants.radiusLarge),
+                    child: Image.file(
+                      File(scanHistory.imagePath),
+                      width: double.infinity,
+                      height: 250,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
 
-            // Result Card
-            _buildResultCard(),
+                  const SizedBox(height: AppConstants.paddingLarge),
 
-            const SizedBox(height: AppConstants.paddingLarge),
+                  // Confidence Card
+                  _buildInfoCard(
+                    'Confidence',
+                    '${(confidence * 100).toStringAsFixed(1)}%',
+                    Icons.analytics,
+                    AppColors.primary,
+                  ),
 
-            // Confidence Card
-            _buildConfidenceCard(),
+                  const SizedBox(height: AppConstants.paddingMedium),
 
-            const SizedBox(height: AppConstants.paddingLarge),
+                  // Severity Card
+                  _buildInfoCard(
+                    'Severity',
+                    scanHistory.severity,
+                    Icons.speed,
+                    _getSeverityColor(scanHistory.severity),
+                  ),
 
-            // Action Buttons
-            _buildActionButtons(),
+                  const SizedBox(height: AppConstants.paddingLarge),
 
-            const SizedBox(height: AppConstants.paddingXLarge),
+                  // Recommendations
+                  if (!isHealthy) _buildRecommendations(),
+
+                  const SizedBox(height: AppConstants.paddingLarge),
+
+                  // Action Buttons
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: () => Navigator.of(context).pop(),
+                          icon: const Icon(Icons.home),
+                          label: const Text('Home'),
+                        ),
+                      ),
+                      const SizedBox(width: AppConstants.paddingMedium),
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            // Share functionality
+                          },
+                          icon: const Icon(Icons.share),
+                          label: const Text('Share'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildImageCard() {
+  Widget _buildInfoCard(String label, String value, IconData icon, Color color) {
     return Container(
-      margin: const EdgeInsets.all(AppConstants.paddingLarge),
-      height: 300,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppConstants.radiusLarge),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.shadowMedium,
-            blurRadius: 12,
-            offset: const Offset(0, 6),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(AppConstants.radiusLarge),
-        child: Image.file(
-          widget.imageFile,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildResultCard() {
-    final isHealthy = widget.result.isHealthy;
-    final statusColor = isHealthy ? AppColors.success : _getSeverityColor();
-    final statusIcon = isHealthy ? Icons.check_circle_rounded : Icons.warning_rounded;
-
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: AppConstants.paddingLarge),
       padding: const EdgeInsets.all(AppConstants.paddingLarge),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLarge),
-        border: Border.all(color: statusColor.withOpacity(0.3), width: 2),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
+        border: Border.all(color: AppColors.borderLight),
       ),
-      child: Column(
+      child: Row(
         children: [
-          // Status Icon
           Container(
             padding: const EdgeInsets.all(AppConstants.paddingMedium),
             decoration: BoxDecoration(
-              color: statusColor.withOpacity(0.1),
-              shape: BoxShape.circle,
+              color: color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(AppConstants.radiusSmall),
             ),
-            child: Icon(statusIcon, size: 48, color: statusColor),
+            child: Icon(icon, color: color, size: AppConstants.iconMedium),
           ),
-
-          const SizedBox(height: AppConstants.paddingMedium),
-
-          // Status Text
-          Text(
-            isHealthy ? AppStrings.healthyCrop : AppStrings.diseaseDetected,
-            style: AppTextStyles.h6.copyWith(color: AppColors.textSecondary),
-          ),
-
-          const SizedBox(height: AppConstants.paddingSmall),
-
-          // Disease Name
-          Text(
-            widget.result.diseaseName,
-            style: AppTextStyles.diseaseName,
-            textAlign: TextAlign.center,
-          ),
-
-          if (!isHealthy) ...[
-            const SizedBox(height: AppConstants.paddingMedium),
-
-            // Severity Badge
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppConstants.paddingMedium,
-                vertical: AppConstants.paddingSmall,
-              ),
-              decoration: BoxDecoration(
-                color: statusColor.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(AppConstants.radiusSmall),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.error_outline_rounded, size: 16, color: statusColor),
-                  const SizedBox(width: 4),
-                  Text(
-                    '${AppStrings.severity}: ${widget.result.severity.toUpperCase()}',
-                    style: AppTextStyles.labelBold.copyWith(color: statusColor),
-                  ),
-                ],
-              ),
+          const SizedBox(width: AppConstants.paddingMedium),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(label, style: AppTextStyles.caption),
+                Text(value, style: AppTextStyles.h5),
+              ],
             ),
-          ],
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildConfidenceCard() {
+  Widget _buildRecommendations() {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: AppConstants.paddingLarge),
       padding: const EdgeInsets.all(AppConstants.paddingLarge),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(AppConstants.radiusLarge),
-        border: Border.all(color: AppColors.borderLight),
+        color: AppColors.warning.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(AppConstants.radiusMedium),
+        border: Border.all(color: AppColors.warning.withOpacity(0.3)),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(AppStrings.confidence, style: AppTextStyles.h6),
-
-          const SizedBox(height: AppConstants.paddingMedium),
-
-          // Confidence Circle
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              SizedBox(
-                width: 150,
-                height: 150,
-                child: CircularProgressIndicator(
-                  value: widget.result.confidence,
-                  strokeWidth: 12,
-                  backgroundColor: AppColors.borderLight,
-                  valueColor: AlwaysStoppedAnimation<Color>(_getConfidenceColor()),
-                ),
-              ),
-              Column(
-                children: [
-                  Text(
-                    '${(widget.result.confidence * 100).toStringAsFixed(1)}%',
-                    style: AppTextStyles.confidenceScore,
-                  ),
-                  Text(
-                    widget.result.getConfidenceLevel(),
-                    style: AppTextStyles.confidenceLabel,
-                  ),
-                ],
-              ),
-            ],
-          ),
-
-          const SizedBox(height: AppConstants.paddingMedium),
-
-          // Detection Time
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.access_time_rounded, size: 16, color: AppColors.textSecondary),
-              const SizedBox(width: 4),
-              Text(
-                '${AppStrings.detectedOn} ${_formatDate(widget.result.detectedAt)}',
-                style: AppTextStyles.caption,
-              ),
+              Icon(Icons.tips_and_updates, color: AppColors.warning),
+              const SizedBox(width: AppConstants.paddingSmall),
+              Text('Recommendations', style: AppTextStyles.h6),
             ],
           ),
+          const SizedBox(height: AppConstants.paddingMedium),
+          _buildRecommendationItem('Remove infected leaves immediately'),
+          _buildRecommendationItem('Apply appropriate fungicide'),
+          _buildRecommendationItem('Improve air circulation'),
+          _buildRecommendationItem('Consult agricultural expert if severe'),
         ],
       ),
     );
   }
 
-  Widget _buildActionButtons() {
+  Widget _buildRecommendationItem(String text) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppConstants.paddingLarge),
-      child: Column(
+      padding: const EdgeInsets.only(bottom: AppConstants.paddingSmall),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (!widget.result.isHealthy)
-            SizedBox(
-              width: double.infinity,
-              height: AppConstants.buttonHeightLarge,
-              child: ElevatedButton.icon(
-                onPressed: _viewTreatment,
-                icon: const Icon(Icons.medical_services_rounded),
-                label: Text(AppStrings.viewTreatment),
-                style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
-              ),
-            ),
-
-          const SizedBox(height: AppConstants.paddingMedium),
-
-          SizedBox(
-            width: double.infinity,
-            height: AppConstants.buttonHeightLarge,
-            child: OutlinedButton.icon(
-              onPressed: _scanAnother,
-              icon: const Icon(Icons.camera_alt_rounded),
-              label: Text(AppStrings.scanAnother),
-            ),
+          const Icon(Icons.check_circle, color: AppColors.success, size: 16),
+          const SizedBox(width: AppConstants.paddingSmall),
+          Expanded(
+            child: Text(text, style: AppTextStyles.bodySmall),
           ),
         ],
       ),
     );
   }
 
-  Color _getSeverityColor() {
-    switch (widget.result.severity.toLowerCase()) {
-      case 'low': return AppColors.severityLow;
-      case 'medium': return AppColors.severityMedium;
-      case 'high': return AppColors.severityHigh;
-      case 'critical': return AppColors.severityCritical;
-      default: return AppColors.severityLow;
+  Color _getSeverityColor(String severity) {
+    switch (severity.toLowerCase()) {
+      case 'severe':
+        return AppColors.error;
+      case 'moderate':
+        return AppColors.warning;
+      case 'mild':
+        return AppColors.info;
+      default:
+        return AppColors.success;
     }
-  }
-
-  Color _getConfidenceColor() {
-    if (widget.result.confidence >= 0.85) return AppColors.success;
-    if (widget.result.confidence >= 0.7) return AppColors.info;
-    if (widget.result.confidence >= 0.5) return AppColors.warning;
-    return AppColors.error;
-  }
-
-  String _formatDate(DateTime date) {
-    return '${date.day}/${date.month}/${date.year} ${date.hour}:${date.minute.toString().padLeft(2, '0')}';
-  }
-
-  void _viewTreatment() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Treatment details coming in next update!'),
-        backgroundColor: AppColors.info,
-      ),
-    );
-  }
-
-  void _shareResult() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Share functionality coming soon!'),
-        backgroundColor: AppColors.info,
-      ),
-    );
-  }
-
-  void _scanAnother() {
-    Navigator.of(context).popUntil((route) => route.isFirst);
   }
 }

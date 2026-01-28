@@ -8,7 +8,8 @@ import '../models/scan_history.dart';
 import '../services/database_service.dart';
 import 'camera_screen.dart';
 import 'history_screen.dart';
-
+import 'encyclopedia_screen.dart';
+import 'profile_screen.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -22,8 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _screens = [
     const HomePage(),
     const HistoryScreen(),
-    const EncyclopediaPage(),
-    const ProfilePage(),
+    const EncyclopediaScreen(),
+    const ProfileScreen(),
+
   ];
 
   @override
@@ -485,21 +487,16 @@ class _HomePageState extends State<HomePage> {
 }
 
 // Placeholder pages for other tabs
-class EncyclopediaPage extends StatelessWidget {
-  const EncyclopediaPage({super.key});
+// Remove the entire EncyclopediaPage class and import the new screen at the top:
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.encyclopediaTitle),
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
-      ),
-      body: const Center(child: Text('Encyclopedia coming soon!')),
-    );
-  }
-}
+
+// Then in the _screens list, use the new screen:
+final List<Widget> _screens = [
+  const HomePage(),
+  const HistoryScreen(),
+  const EncyclopediaScreen(),  // ← Use this instead
+  const ProfilePage(),
+];
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

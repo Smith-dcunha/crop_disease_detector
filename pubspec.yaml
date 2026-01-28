@@ -10,6 +10,12 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
+
+
+
   # UI Components
   cupertino_icons: ^1.0.6
   google_fonts: ^6.1.0
@@ -49,9 +55,10 @@ dependencies:
   dio: ^5.4.0
 
   # Utilities
-  intl: ^0.18.1
+  intl: ^0.20.2
   uuid: ^4.2.2
   permission_handler: ^11.1.0
+
 
   # Animations
   animated_text_kit: ^4.2.2
@@ -70,6 +77,6 @@ flutter:
   assets:
     - assets/images/
     - assets/models/
-    - assets/data/
+    - assets/data/              # ← Make sure this is included
     - assets/animations/
 
